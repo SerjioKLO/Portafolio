@@ -577,6 +577,31 @@ body {
     color: var(--crimson-deep);
 }
 
+/* --- Efecto Scramble Text (Texto Desencriptado / Cyber Glitch) --- */
+.scramble-text {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: text-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.scramble-text:hover {
+    filter: brightness(1.15);
+    text-shadow: 0 0 12px rgba(193, 18, 31, 0.35);
+}
+
+.scramble-char-active {
+    display: inline-block;
+    color: var(--crimson-pure);
+    font-family: var(--font-mono);
+    opacity: 0.92;
+    font-size: 0.96em;
+    transform: translateY(0);
+    transition: color 0.1s ease;
+}
+
 /* Subtítulo solicitado */
 .hero-subtitle {
     font-family: var(--font-mono);

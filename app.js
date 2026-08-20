@@ -464,4 +464,116 @@ Documento verificado y actualizado a 2026.`;
         }, 3500);
     }
 
+    // ==========================================================================
+    // 11. EFECTO SCRAMBLE TEXT (DESENCRIPTADO DE TEXTO)
+    // ==========================================================================
+    class TextScramble {
+        constructor(el) {
+            this.el = el;
+            this.chars = '!<>-_\\/[]{}—=+*^?#_0123456789ABCDEF!@#$%&*';
+            this.update = this.update.bind(this);
+            this.targetText = el.dataset.scramble || el.textContent.trim();
+            this.isScrambling = false;
+            this.frame = 0;
+            this.frameRequest = null;
+        }
+
+        setText(newText) {
+            const oldText = this.el.textContent;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => this.resolve = resolve);
+            this.queue = [];
+
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || '';
+                const to = newText[i] || '';
+                const start = Math.floor(Math.random() * 12);
+                const end = start + Math.floor(Math.random() * 18) + 12;
+                this.queue.push({ from, to, start, end, char: '' });
+            }
+
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.isScrambling = true;
+            this.update();
+            return promise;
+        }
+
+        update() {
+            let output = '';
+            let complete = 0;
+
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i];
+
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.35) {
+                        char = this.randomChar();
+                        this.queue[i].char = char;
+                    }
+                    output += `<span class="scramble-char-active">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+
+            this.el.innerHTML = output;
+
+            if (complete === this.queue.length) {
+                this.isScrambling = false;
+                if (this.resolve) this.resolve();
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+
+        scramble() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                this.el.textContent = this.targetText;
+                return Promise.resolve();
+            }
+            return this.setText(this.targetText);
+        }
+    }
+
+    function initScrambleText() {
+        const scrambleElements = document.querySelectorAll('.scramble-text');
+        if (!scrambleElements.length) return;
+
+        scrambleElements.forEach((el) => {
+            const scrambler = new TextScramble(el);
+            const originalText = el.dataset.scramble || el.textContent.trim();
+            el.setAttribute('aria-label', originalText);
+
+            // Disparo inicial automático al cargar la página
+            setTimeout(() => {
+                scrambler.scramble();
+            }, 350);
+
+            // Efecto interactivo al pasar el cursor o hacer click
+            el.addEventListener('mouseenter', () => {
+                if (!scrambler.isScrambling) {
+                    scrambler.scramble();
+                }
+            });
+
+            el.addEventListener('click', () => {
+                if (!scrambler.isScrambling) {
+                    scrambler.scramble();
+                }
+            });
+        });
+    }
+
+    // Inicializar efecto Scramble
+    initScrambleText();
+
 })();
