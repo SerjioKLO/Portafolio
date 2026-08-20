@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio | Ingeniero Informático — Portafolio</title>
+    <meta name="description" content="Portafolio profesional de Sergio, Ingeniero Informático. Especializado en desarrollo web, arquitectura de software, bases de datos relacionales y algoritmos.">
+    
+    <!-- Favicon / Logo en pestaña y motores de búsqueda -->
+    <link rel="icon" type="image/png" href="assets/logo_serjio.png">
+    <link rel="shortcut icon" type="image/png" href="assets/logo_serjio.png">
+    <link rel="apple-touch-icon" href="assets/logo_serjio.png">
+    <meta property="og:image" content="assets/logo_serjio.png">
+    <meta property="og:title" content="Sergio | Ingeniero Informático — Portafolio">
+    <meta property="og:description" content="Portafolio profesional de Sergio, Ingeniero Informático.">
+    
+    <!-- Tipografías: Plus Jakarta Sans + Space Grotesk + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="portfolio-body">
+
+    <!-- BOTÓN DE MENÚ PARA DISPOSITIVOS MÓVILES -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- OVERLAY PARA MÓVIL -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ==================================================== -->
+    <!-- NAVBAR ESTÁTICA LATERAL IZQUIERDA (GRIS OSCURO)     -->
+    <!-- ==================================================== -->
+    <aside class="sidebar-navbar" id="sidebarNavbar">
+        
+        <!-- ARTE COMPLETO EN LA NAVBAR: LYCORIS_CENTIPEDE_2 EN SU TOTALIDAD (OPACIDAD NO INVASIVA) -->
+        <div class="navbar-full-art-backdrop" aria-hidden="true">
+            <img src="assets/lycoris_centipede_2.png" alt="" class="navbar-full-art-img">
+        </div>
+
+        <!-- LOGO EN LA ESQUINA SUPERIOR IZQUIERDA (Separado ~50px de bordes) -->
+        <div class="sidebar-brand-container">
+            <a href="#home" class="brand-logo-link" aria-label="Ir al inicio">
+                <div class="brand-logo-box">
+                    <img src="assets/logo_serjio.png" alt="Logo de Sergio" class="brand-custom-logo">
+                </div>
+                <div class="brand-text-block">
+                    <span class="brand-title">SERGIO</span>
+                    <span class="brand-role">SOFTWARE ENGINEER</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- NAVEGACIÓN CON 5 SECCIONES (Sin recuadros, tachado carmesí al hover) -->
+        <nav class="sidebar-navigation" aria-label="Menú principal">
+            <ul class="nav-links-list">
+                <li class="nav-item">
+                    <a href="#home" class="nav-strike-link active" data-section="home">
+                        <span class="nav-number">01</span>
+                        <span class="nav-label">HOME</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#acerca-de" class="nav-strike-link" data-section="acerca-de">
+                        <span class="nav-number">02</span>
+                        <span class="nav-label">ACERCA DE</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#servicios" class="nav-strike-link" data-section="servicios">
+                        <span class="nav-number">03</span>
+                        <span class="nav-label">SERVICIOS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#trabajos" class="nav-strike-link" data-section="trabajos">
+                        <span class="nav-number">04</span>
+                        <span class="nav-label">TRABAJOS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contacto" class="nav-strike-link" data-section="contacto">
+                        <span class="nav-number">05</span>
+                        <span class="nav-label">CONTACTO</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- PIE DE LA NAVBAR: 3 ICONOS (INSTAGRAM, GITHUB, LINKEDIN) + COPYRIGHT -->
+        <div class="sidebar-footer-container">
+            <div class="sidebar-social-icons">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/serjio.ok/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram de Sergio" title="Instagram">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <!-- GitHub -->
+                <a href="https://github.com/SerjioKLO" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub de Sergio" title="GitHub">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn de Sergio" title="LinkedIn">
+                    <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="sidebar-copyright">
+                <p class="copyright-text">© 2026 Sergio.</p>
+                <p class="copyright-sub">Todos los derechos reservados.</p>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- ==================================================== -->
+    <!-- CUERPO DE LA PÁGINA (FONDO BLANCO PURO)              -->
+    <!-- ==================================================== -->
+    <div class="main-content-scroll" id="mainContentScroll">
+
+        <!-- ================================================ -->
+        <!-- SECCIÓN 1: HOME                                  -->
+        <!-- ================================================ -->
+        <section class="section-container section-home" id="home">
+            
+            <!-- Arte en Borde: 1/4 fuera del cuadro (Lycoris + Ciempiés) -->
+            <div class="art-layer bleed-top-right-quarter" aria-hidden="true">
+                <img src="assets/lycoris_centipede_1.png" alt="" class="art-img rot-neg-35 scale-xlarge">
+            </div>
+
+            <!-- Arte Descentralizado en el Centro-Inferior (Ciempiés solitario) -->
+            <div class="art-layer offcenter-hero-crawl" aria-hidden="true">
+                <img src="assets/navbar_centipede_dark.png" alt="" class="art-img rot-75 scale-xlarge">
+            </div>
+
+            <div class="home-inner-wrapper">
+                
+                <!-- Tag técnico minimalista -->
+                <div class="hero-status-pill">
+                    <span class="status-indicator-dot"></span>
+                    <span class="status-indicator-text">DISPONIBLE PARA PROYECTOS & PASANTÍAS</span>
+                </div>
+
+                <!-- Título Principal y Subtítulo solicitados -->
+                <h1 class="hero-main-title">
+                    Hola mundo! <br>
+                    <span class="title-highlight">Soy serjio</span>
+                </h1>
+
+                <h2 class="hero-subtitle">
+                    Ingeniero informático
+                </h2>
+
+                <p class="hero-description">
+                    Especializado en la concepción y desarrollo de sistemas de software robustos, 
+                    arquitecturas backend escalables, persistencia de datos relacionales y soluciones web 
+                    con fundamentos sólidos en ciencias de la computación.
+                </p>
+
+                <!-- Botón solicitado hacia contacto -->
+                <div class="hero-actions-container">
+                    <a href="#contacto" class="btn-crimson-solid" id="heroContactBtn">
+                        <span class="btn-text">Contáctame</span>
+                        <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    
+                    <a href="#acerca-de" class="btn-secondary-line">
+                        <span class="btn-text">Ver Perfil</span>
+                    </a>
+                </div>
+
+                <!-- Indicador de desplazamiento autónomo -->
+                <div class="scroll-down-hint">
+                    <span class="scroll-text">EXPLORAR CONTENIDO</span>
+                    <div class="scroll-line-track">
+                        <div class="scroll-line-thumb"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================ -->
+        <!-- SECCIÓN 2: ACERCA DE                             -->
+        <!-- ================================================ -->
+        <section class="section-container section-about" id="acerca-de">
+            
+            <!-- Arte en Borde: 1/4 fuera del cuadro por la izquierda (Lycoris + Ciempiés) -->
+            <div class="art-layer bleed-left-quarter-about" aria-hidden="true">
+                <img src="assets/spiderlily_stem.jpg" alt="" class="art-img rot-18 scale-xlarge">
+            </div>
+
+            <!-- Arte Descentralizado en el Centro-Derecha (Ciempiés solitario curvado) -->
+            <div class="art-layer offcenter-about-curled" aria-hidden="true">
+                <img src="assets/centipede_curled.jpg" alt="" class="art-img rot-12 scale-xlarge">
+            </div>
+
+            <div class="section-header-block">
+                <span class="section-index">02</span>
+                <h2 class="section-heading">ACERCA DE</h2>
+                <div class="section-heading-line"></div>
+            </div>
+
+            <div class="about-grid-layout">
+                
+                <!-- Espacio para Foto con marco de diseño y acento carmesí -->
+                <div class="about-photo-wrapper">
+                    <div class="photo-frame-container">
+                        <div class="photo-corner-accent top-left"></div>
+                        <div class="photo-corner-accent bottom-right"></div>
+                        <img src="assets/sergio_avatar.jpg" alt="Retrato profesional de Sergio, Ingeniero Informático" class="about-profile-image">
+                    </div>
+                    <div class="photo-caption-tag">
+                        <span class="caption-name">Sergio</span>
+                        <span class="caption-title">Desarrollador Junior de Software</span>
+                    </div>
+                </div>
+
+                <!-- Contenido descriptivo del Ingeniero Junior -->
+                <div class="about-content-column">
+                    <h3 class="about-subheading">
+                        Rigor analítico, lógica estructurada y pasión por el código limpio.
+                    </h3>
+                    
+                    <p class="about-paragraph">
+                        Soy un ingeniero informático enfocado en construir software que combine eficiencia algorítmica, mantenibilidad y una arquitectura clara. Mi formación se centra en los pilares fundamentales de las ciencias de la computación: estructuras de datos avanzadas, diseño de sistemas concurrentes, bases de datos relacionales y buenas prácticas de ingeniería.
+                    </p>
+
+                    <p class="about-paragraph">
+                        Abordo cada problema descomponiéndolo en componentes modulares, evaluando la complejidad temporal y espacial de las soluciones, y priorizando la legibilidad del código para garantizar su evolución a largo plazo.
+                    </p>
+
+                    <!-- RECUADRO DE CITA BIBLIOGRÁFICA -->
+                    <div class="bibliographic-quote-box">
+                        <div class="quote-icon-mark">“</div>
+                        <div class="quote-body">
+                            <blockquote class="quote-text">
+                                «La simplicidad es prerrequisito para la confiabilidad. El software más elegante no es aquel que añade todo lo posible, sino aquel al que ya no se le puede quitar nada sin comprometer su función.»
+                            </blockquote>
+                            <div class="quote-citation">
+                                <span class="quote-author">Edsger W. Dijkstra</span>
+                                <span class="quote-source">Notas sobre Programación Estructurada (EWD249)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REDIRECCIONADOR PARA DESCARGAR CV -->
+                    <div class="about-actions-row">
+                        <button class="btn-crimson-solid" id="btnDownloadCv">
+                            <svg class="btn-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span class="btn-text">Descargar CV (PDF)</span>
+                        </button>
+
+                        <a href="#contacto" class="btn-secondary-line">
+                            <span class="btn-text">Contactar Directamente</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Datos rápidos / Métricas formativas -->
+            <div class="stats-cards-strip">
+                <div class="stat-card">
+                    <span class="stat-number">+5</span>
+                    <span class="stat-label">Proyectos Desarrollados</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3FN</span>
+                    <span class="stat-label">Modelado Relacional SQL</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">O(log n)</span>
+                    <span class="stat-label">Pensamiento Algorítmico</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Compromiso y Rigor</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================================================ -->
+        <!-- SECCIÓN 3: SERVICIOS                             -->
+        <!-- ================================================ -->
+        <section class="section-container section-services" id="servicios">
+            
+            <!-- Arte en Borde: 1/4 fuera del cuadro por la derecha (Lycoris + Ciempiés) -->
+            <div class="art-layer bleed-right-quarter-services" aria-hidden="true">
+                <img src="assets/lycoris_centipede_3.jpg" alt="" class="art-img rot-40 scale-xlarge">
+            </div>
+
+            <!-- Arte Descentralizado en el Centro-Inferior (Ciempiés deslizante) -->
+            <div class="art-layer offcenter-services-crawl" aria-hidden="true">
+                <img src="assets/centipede_crawler.png" alt="" class="art-img rot-neg-18 scale-large">
+            </div>
+
+            <div class="section-header-block">
+                <span class="section-index">03</span>
+                <h2 class="section-heading">SERVICIOS</h2>
+                <div class="section-heading-line"></div>
+            </div>
+
+            <p class="section-lead-text">
+                Especialidades técnicas y áreas de competencia profesional orientadas al desarrollo de soluciones informáticas fiables y mantenibles.
+            </p>
+
+            <div class="services-grid">
+
+                <!-- Servicio 1 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">01</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                <rect x="9" y="9" width="6" height="6"></rect>
+                                <line x1="9" y1="1" x2="9" y2="4"></line>
+                                <line x1="15" y1="1" x2="15" y2="4"></line>
+                                <line x1="9" y1="20" x2="9" y2="23"></line>
+                                <line x1="15" y1="20" x2="15" y2="23"></line>
+                                <line x1="20" y1="9" x2="23" y2="9"></line>
+                                <line x1="20" y1="14" x2="23" y2="14"></line>
+                                <line x1="1" y1="9" x2="4" y2="9"></line>
+                                <line x1="1" y1="14" x2="4" y2="14"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Arquitectura de Microservicios</h3>
+                    <p class="service-description">
+                        Diseño e implementación de sistemas distribuidos bajo el patrón de microservicios con Spring Boot y Spring Cloud. Cada dominio encapsulado en un servicio independiente, comunicados mediante OpenFeign y expuestos por un API Gateway centralizado.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>Spring Boot 3.x & Spring Cloud</li>
+                        <li>API Gateway & Enrutamiento Dinámico</li>
+                        <li>Spring Cloud OpenFeign (inter-service)</li>
+                        <li>Patrón Database per Service</li>
+                        <li>Docker Compose (orquestación local)</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">02</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Backend & APIs RESTful con Java</h3>
+                    <p class="service-description">
+                        Desarrollo de backends robustos en Java 17/21 con Spring Boot. Diseño de APIs RESTful con capas diferenciadas (Controller, Service, Repository), DTOs, manejo centralizado de errores, autenticación con BCrypt y documentación automática vía Swagger UI.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>Java 17 / Java 21 (LTS)</li>
+                        <li>Spring Data JPA & Hibernate</li>
+                        <li>Spring Security 6 (BCrypt)</li>
+                        <li>Springdoc OpenAPI (Swagger UI)</li>
+                        <li>Lombok & Arquitectura por Capas</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">03</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Bases de Datos Relacionales & PL/SQL</h3>
+                    <p class="service-description">
+                        Modelado conceptual y lógico de datos con normalización hasta 3FN, diseño de esquemas en MySQL, PostgreSQL y Oracle. Programación procedural avanzada en PL/SQL: cursores, procedimientos almacenados, funciones, triggers y migraciones versionadas con Flyway.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>PostgreSQL & MySQL 8</li>
+                        <li>Oracle DB & PL/SQL (cursores, procedures)</li>
+                        <li>Migraciones Flyway (versionado de esquemas)</li>
+                        <li>Normalización 3FN & Modelado ER</li>
+                        <li>Optimización de Queries e Índices</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">04</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Desarrollo Web Full Stack</h3>
+                    <p class="service-description">
+                        Construcción de interfaces web semánticas, responsivas y accesibles con HTML5, CSS3 y JavaScript modular. Integración directa con APIs REST propias para aplicaciones de una sola página sin dependencias de frameworks pesados.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>HTML5 Semántico & CSS3 (Flexbox, Grid)</li>
+                        <li>JavaScript ES6+ Modular (Vanilla)</li>
+                        <li>Diseño Responsivo & Accesibilidad</li>
+                        <li>Integración REST API (Fetch / Axios)</li>
+                        <li>Single Page Applications (SPA)</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">05</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="6" y1="3" x2="6" y2="15"></line>
+                                <circle cx="18" cy="6" r="3"></circle>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Contenerización & DevOps Básico</h3>
+                    <p class="service-description">
+                        Empaquetado de servicios en contenedores Docker con builds multi-stage optimizados para Java. Orquestación de entornos completos con Docker Compose, gestión de redes bridge, volúmenes persistentes y variables de entorno por servicio.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>Docker & Dockerfile multi-stage</li>
+                        <li>Docker Compose (multi-contenedor)</li>
+                        <li>Git & GitHub Flow (ramas, PRs)</li>
+                        <li>Maven Wrapper & gestión multi-módulo</li>
+                        <li>Variables de entorno & configuración</li>
+                    </ul>
+                </div>
+
+                <!-- Servicio 6 -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <span class="service-number">06</span>
+                        <div class="service-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="service-title">Testing, Calidad & Clean Code</h3>
+                    <p class="service-description">
+                        Escritura de pruebas unitarias sobre capas Service y Controller con JUnit 5 y Mockito. Medición de cobertura con Jacoco. Aplicación de principios SOLID y Clean Code para mantener bases de código legibles, desacopladas y evolutivas a largo plazo.
+                    </p>
+                    <ul class="service-skills-list">
+                        <li>JUnit 5 & Mockito (Spring Boot Test)</li>
+                        <li>Jacoco (cobertura de pruebas)</li>
+                        <li>Principios SOLID & Clean Code</li>
+                        <li>Documentación técnica & Swagger</li>
+                        <li>Detección y corrección de bugs</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================ -->
+        <!-- SECCIÓN 4: TRABAJOS                              -->
+        <!-- ================================================ -->
+        <section class="section-container section-works" id="trabajos">
+            
+            <!-- Arte en Borde: 1/4 fuera del cuadro por la esquina superior izquierda (Ciempiés curvado) -->
+            <div class="art-layer bleed-top-left-works" aria-hidden="true">
+                <img src="assets/centipede_art.png" alt="" class="art-img rot-160 scale-large">
+            </div>
+
+            <!-- Arte Descentralizado en el Centro-Derecha (Lycoris + Ciempiés) -->
+            <div class="art-layer offcenter-works-combo" aria-hidden="true">
+                <img src="assets/navbar_centipede_dark.png" alt="" class="art-img rot-neg-12 scale-xlarge">
+            </div>
+
+            <div class="section-header-block">
+                <span class="section-index">04</span>
+                <h2 class="section-heading">TRABAJOS</h2>
+                <div class="section-heading-line"></div>
+            </div>
+
+            <p class="section-lead-text">
+                Selección de proyectos de ingeniería de software con énfasis en resolución de problemas técnicos, fundamentos de sistemas y arquitecturas modulares.
+            </p>
+
+            <!-- Filtros de Proyectos -->
+            <div class="works-filter-bar">
+                <button class="filter-btn active" data-filter="all">Todos los Trabajos</button>
+                <button class="filter-btn" data-filter="fullstack">Web & Full Stack</button>
+                <button class="filter-btn" data-filter="backend">Backend & Bases de Datos</button>
+                <button class="filter-btn" data-filter="algorithms">Sistemas & Algoritmos</button>
+            </div>
+
+            <!-- Grid de Proyectos -->
+            <div class="works-grid" id="worksGrid">
+                
+                <!-- PROYECTO 1 -->
+                <article class="work-card" data-category="backend" data-project-id="onlyfields">
+                    <div class="work-card-media">
+                        <div class="work-media-badge">ERP · MICROSERVICIOS</div>
+                        <div class="work-mockup-screen">
+                            <div class="screen-header">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="screen-title">OnlyFields — AccesoService.java</span>
+                            </div>
+                            <div class="screen-code-preview">
+                                <code>
+<span class="c-kw">@FeignClient</span>(<span class="c-str">name = "ms-accesos"</span>)
+<span class="c-kw">public interface</span> <span class="c-fn">AccesoClient</span> {
+  <span class="c-kw">@PostMapping</span>(<span class="c-str">"/api/v1/qr/generar"</span>)
+  <span class="c-fn">QrTokenDTO</span> <span class="c-fn">generarToken</span>(<span class="c-var">@RequestBody</span> Long reservaId);
+}
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-body">
+                        <div class="work-meta-row">
+                            <span class="work-tech-tag">Java 17</span>
+                            <span class="work-tech-tag">Spring Boot 3.2</span>
+                            <span class="work-tech-tag">Spring Cloud</span>
+                            <span class="work-tech-tag">MySQL 8</span>
+                            <span class="work-tech-tag">Docker</span>
+                        </div>
+                        <h3 class="work-card-title">OnlyFields ERP — Sistema de Gestión para Complejos Deportivos</h3>
+                        <p class="work-card-description">
+                            ERP integral desarrollado como monorepo Maven multi-módulo con 10 microservicios independientes. Digitaliza reservas de canchas, punto de venta, control de acceso físico por tokens QR, suscripciones de socios, seguimiento físico y reportes consolidados. Orquestado con Docker Compose sobre 12 contenedores en red bridge.
+                        </p>
+                        <div class="work-card-footer">
+                            <button class="btn-details-trigger" data-open-modal="onlyfields">
+                                <span>Ver Arquitectura & Detalles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 2 -->
+                <article class="work-card" data-category="backend" data-project-id="statikk">
+                    <div class="work-card-media">
+                        <div class="work-media-badge">STATS · RIOT GAMES API</div>
+                        <div class="work-mockup-screen">
+                            <div class="screen-header">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="screen-title">statikk.gg — MatchService.java</span>
+                            </div>
+                            <div class="screen-code-preview">
+                                <code>
+<span class="c-kw">@Service</span>
+<span class="c-kw">public class</span> <span class="c-fn">MatchService</span> {
+  <span class="c-fn">MatchHistoryDTO</span> <span class="c-fn">getHistory</span>(<span class="c-var">String</span> riotId) {
+    <span class="c-kw">return</span> riotClient.<span class="c-fn">fetchMatches</span>(riotId)
+      .<span class="c-fn">map</span>(mapper::<span class="c-fn">toDTO</span>);
+  }
+}
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-body">
+                        <div class="work-meta-row">
+                            <span class="work-tech-tag">Java 21</span>
+                            <span class="work-tech-tag">Spring Boot 3.x</span>
+                            <span class="work-tech-tag">PostgreSQL</span>
+                            <span class="work-tech-tag">Riot Games API</span>
+                            <span class="work-tech-tag">Docker</span>
+                        </div>
+                        <h3 class="work-card-title">Statikk.gg — Plataforma de Estadísticas para Juegos de Riot Games</h3>
+                        <p class="work-card-description">
+                            Plataforma web de estadísticas estilo op.gg para el ecosistema completo de Riot Games. Permite buscar por Riot ID y consultar historial de partidas, estadísticas de ranked y promedios de rendimiento en League of Legends, Valorant, TFT y más.
+                        </p>
+                        <div class="work-card-footer">
+                            <button class="btn-details-trigger" data-open-modal="statikk">
+                                <span>Ver Arquitectura & Detalles</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================================================ -->
+        <!-- SECCIÓN 5: CONTACTO                              -->
+        <!-- ================================================ -->
+        <section class="section-container section-contact" id="contacto">
+            
+            <!-- Arte en Borde: 1/4 fuera del cuadro por la esquina inferior derecha (Lycoris + Ciempiés) -->
+            <div class="art-layer bleed-bottom-right-contact" aria-hidden="true">
+                <img src="assets/lycoris_centipede_1.png" alt="" class="art-img rot-neg-35 scale-xlarge">
+            </div>
+
+            <!-- Arte Descentralizado en el Centro-Izquierda (Ciempiés solitario) -->
+            <div class="art-layer offcenter-contact-crawl" aria-hidden="true">
+                <img src="assets/centipede_crawler.jpg" alt="" class="art-img scale-medium">
+            </div>
+
+            <div class="section-header-block">
+                <span class="section-index">05</span>
+                <h2 class="section-heading">CONTACTO</h2>
+                <div class="section-heading-line"></div>
+            </div>
+
+            <p class="section-lead-text">
+                ¿Interesado en colaborar, ofrecer una oportunidad laboral o discutir un proyecto de software? Envíame un mensaje o contáctame directamente a través de mis canales profesionales.
+            </p>
+
+            <div class="contact-layout-grid">
+                
+                <!-- Formulario de Contacto -->
+                <div class="contact-form-container">
+                    <form class="clean-contact-form" id="contactForm" novalidate>
+                        <div class="form-group-row">
+                            <div class="form-field">
+                                <label for="contactName" class="form-label">Nombre Completo <span class="required-star">*</span></label>
+                                <input type="text" id="contactName" name="name" class="form-input" placeholder="Ej. Alex Ramírez" required>
+                                <span class="field-error-msg" id="nameError">Por favor ingresa tu nombre.</span>
+                            </div>
+                            <div class="form-field">
+                                <label for="contactEmail" class="form-label">Correo Electrónico <span class="required-star">*</span></label>
+                                <input type="email" id="contactEmail" name="email" class="form-input" placeholder="alex@empresa.com" required>
+                                <span class="field-error-msg" id="emailError">Por favor ingresa un correo válido.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contactSubject" class="form-label">Asunto <span class="required-star">*</span></label>
+                            <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="Propuesta de proyecto / Oportunidad de trabajo" required>
+                            <span class="field-error-msg" id="subjectError">Por favor especifica un asunto.</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="contactMessage" class="form-label">Mensaje <span class="required-star">*</span></label>
+                            <textarea id="contactMessage" name="message" class="form-textarea" rows="5" placeholder="Describe brevemente los requerimientos, tecnologías o detalles del proyecto..." required></textarea>
+                            <span class="field-error-msg" id="messageError">El mensaje debe tener al menos 10 caracteres.</span>
+                        </div>
+
+                        <button type="submit" class="btn-crimson-solid full-width" id="btnSubmitForm">
+                            <span class="btn-text">Enviar Mensaje</span>
+                            <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Información de Contacto Directo -->
+                <div class="contact-info-column">
+                    
+                    <div class="contact-card-box">
+                        <div class="contact-card-header">
+                            <span class="card-tag">CANAL DIRECTO</span>
+                            <h4 class="card-heading">Correo Electrónico</h4>
+                        </div>
+                        <p class="card-value" id="emailAddress">sesesergio.2003@gmail.com</p>
+                        <button class="btn-copy-email" id="btnCopyEmail" title="Copiar correo al portapapeles">
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span id="copyEmailText">Copiar correo</span>
+                        </button>
+                    </div>
+
+                    <div class="contact-card-box">
+                        <div class="contact-card-header">
+                            <span class="card-tag">UBICACIÓN & DISPONIBILIDAD</span>
+                            <h4 class="card-heading">Puerto Montt, Chile (GMT-4)</h4>
+                        </div>
+                        <p class="card-description">
+                            Disponible para trabajo remoto a nivel global y presencial/híbrido en la Región De los Lagos.
+                        </p>
+                    </div>
+
+                    <div class="contact-card-box highlight-burdeo">
+                        <div class="contact-card-header">
+                            <span class="card-tag-red">ESTADO ACTUAL</span>
+                            <h4 class="card-heading">Búsqueda Activa</h4>
+                        </div>
+                        <p class="card-description">
+                            Ingeniero informático junior disponible para roles de Desarrollo de Software, Backend, Full Stack o prácticas profesionales de ingeniería.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer de la página web -->
+            <footer class="content-page-footer">
+                <div class="footer-divider"></div>
+                <div class="footer-bottom-row">
+                    <p class="footer-legal">© 2026 Sergio. Portafolio de Ingeniería en Informática. Código limpio, cero dependencias innecesarias.</p>
+                    <a href="#home" class="footer-back-to-top">
+                        <span>Volver arriba</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </footer>
+
+        </section>
+
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- MODAL DE DETALLES DE PROYECTO                        -->
+    <!-- ==================================================== -->
+    <div class="app-modal" id="projectDetailsModal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-window">
+            <div class="modal-header">
+                <div class="modal-tag-row">
+                    <span class="modal-badge-carmin" id="modalProjectCategory">SISTEMAS OPERATIVOS</span>
+                    <span class="modal-version-tag" id="modalProjectVersion">v1.3.0</span>
+                </div>
+                <h3 class="modal-title" id="modalProjectTitle">SysAlloc — Simulador Visual de Paginación</h3>
+                <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar ventana">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-content-scroll" id="modalProjectBody">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+
+            <div class="modal-footer">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-secondary-line" id="modalGithubLink">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                    <span>Ver Repositorio</span>
+                </a>
+                <button class="btn-crimson-solid" id="modalCloseActionBtn">
+                    <span>Entendido</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- TOAST NOTIFICATION CONTAINER                         -->
+    <!-- ==================================================== -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Script de interactividad -->
+    <script src="app.js"></script>
+</body>
+</html>
