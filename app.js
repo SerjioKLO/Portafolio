@@ -465,38 +465,43 @@ Documento verificado y actualizado a 2026.`;
     }
 
     // ==========================================================================
-    // 11. EFECTO SCRAMBLE TEXT (DESENCRIPTADO DE TEXTO)
+    // 11. EFECTO SCRAMBLE TEXT (DESENCRIPTADO DE TEXTO CYBERPUNK / TERMINAL)
     // ==========================================================================
     class TextScramble {
         constructor(el) {
             this.el = el;
             this.chars = '!<>-_\\/[]{}—=+*^?#_0123456789ABCDEF!@#$%&*';
-            this.update = this.update.bind(this);
             this.targetText = el.dataset.scramble || el.textContent.trim();
-            this.isScrambling = false;
-            this.frame = 0;
             this.frameRequest = null;
+            this.isScrambling = false;
+            this.update = this.update.bind(this);
         }
 
         setText(newText) {
-            const oldText = this.el.textContent;
+            const oldText = this.el.textContent.trim() || '';
             const length = Math.max(oldText.length, newText.length);
-            const promise = new Promise((resolve) => this.resolve = resolve);
             this.queue = [];
 
             for (let i = 0; i < length; i++) {
                 const from = oldText[i] || '';
                 const to = newText[i] || '';
-                const start = Math.floor(Math.random() * 12);
-                const end = start + Math.floor(Math.random() * 18) + 12;
+                // Escalona la resolución de izquierda a derecha con variación orgánica
+                const start = Math.floor(Math.random() * 6) + (i * 3);
+                const end = start + Math.floor(Math.random() * 10) + 16;
                 this.queue.push({ from, to, start, end, char: '' });
             }
 
-            cancelAnimationFrame(this.frameRequest);
+            if (this.frameRequest) {
+                cancelAnimationFrame(this.frameRequest);
+            }
+            
             this.frame = 0;
             this.isScrambling = true;
-            this.update();
-            return promise;
+
+            return new Promise((resolve) => {
+                this.resolve = resolve;
+                this.update();
+            });
         }
 
         update() {
@@ -510,13 +515,15 @@ Documento verificado y actualizado a 2026.`;
                     complete++;
                     output += to;
                 } else if (this.frame >= start) {
-                    if (!char || Math.random() < 0.35) {
+                    if (!char || Math.random() < 0.65) {
                         char = this.randomChar();
                         this.queue[i].char = char;
                     }
                     output += `<span class="scramble-char-active">${char}</span>`;
                 } else {
-                    output += from;
+                    // Muestra caracteres encriptados activos desde el primer frame para que el efecto sea evidente de inmediato
+                    const activeChar = this.randomChar();
+                    output += `<span class="scramble-char-active">${activeChar}</span>`;
                 }
             }
 
@@ -524,10 +531,11 @@ Documento verificado y actualizado a 2026.`;
 
             if (complete === this.queue.length) {
                 this.isScrambling = false;
+                this.el.textContent = this.targetText; // Deja el texto final limpio
                 if (this.resolve) this.resolve();
             } else {
-                this.frameRequest = requestAnimationFrame(this.update);
                 this.frame++;
+                this.frameRequest = requestAnimationFrame(this.update);
             }
         }
 
@@ -536,10 +544,6 @@ Documento verificado y actualizado a 2026.`;
         }
 
         scramble() {
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                this.el.textContent = this.targetText;
-                return Promise.resolve();
-            }
             return this.setText(this.targetText);
         }
     }
@@ -552,28 +556,73 @@ Documento verificado y actualizado a 2026.`;
             const scrambler = new TextScramble(el);
             const originalText = el.dataset.scramble || el.textContent.trim();
             el.setAttribute('aria-label', originalText);
+            el._scrambler = scrambler;
 
-            // Disparo inicial automático al cargar la página
-            setTimeout(() => {
-                scrambler.scramble();
-            }, 350);
-
-            // Efecto interactivo al pasar el cursor o hacer click
+            // Disparo interactivo al hacer hover directo o click
             el.addEventListener('mouseenter', () => {
-                if (!scrambler.isScrambling) {
-                    scrambler.scramble();
-                }
+                scrambler.scramble();
             });
 
             el.addEventListener('click', () => {
-                if (!scrambler.isScrambling) {
+                scrambler.scramble();
+            });
+
+            // Si está dentro de la barra lateral (logo o link de marca), disparar al pasar el ratón por el contenedor
+            const brandLink = el.closest('.brand-logo-link');
+            if (brandLink) {
+                brandLink.addEventListener('mouseenter', () => {
                     scrambler.scramble();
+                });
+            }
+
+            // Si está dentro del título principal del Hero, disparar al pasar por el título
+            const heroTitle = el.closest('.hero-main-title');
+            if (heroTitle) {
+                heroTitle.addEventListener('mouseenter', () => {
+                    scrambler.scramble();
+                });
+            }
+        });
+
+        // Disparo automático inicial al cargar la página para dar la bienvenida visual
+        setTimeout(() => {
+            scrambleElements.forEach((el) => {
+                if (el._scrambler) {
+                    el._scrambler.scramble();
                 }
             });
+        }, 300);
+    }
+
+    // ==========================================================================
+    // 12. INICIALIZACIÓN DEL BACKGROUND DITHER (REACT BITS)
+    // ==========================================================================
+    function initDitherEffect() {
+        const ditherContainer = document.getElementById('ditherBackground');
+        if (!ditherContainer || typeof DitherBackground === 'undefined') return;
+
+        new DitherBackground(ditherContainer, {
+            waveSpeed: 0.05,
+            waveFrequency: 3.0,
+            waveAmplitude: 0.3,
+            waveColor: [0.86, 0.08, 0.24], // Carmesí característico de la paleta de Sergio
+            colorNum: 4.0,
+            pixelSize: 2.0,
+            disableAnimation: false,
+            enableMouseInteraction: true,
+            mouseRadius: 0.3
         });
     }
 
-    // Inicializar efecto Scramble
-    initScrambleText();
+    // Inicializar componentes cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrambleText();
+            initDitherEffect();
+        });
+    } else {
+        initScrambleText();
+        initDitherEffect();
+    }
 
 })();

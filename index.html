@@ -21,8 +21,12 @@
     
     <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Dither.css">
 </head>
 <body class="portfolio-body">
+
+    <!-- FONDO DITHER GLOBAL CONTINUO PARA TODA LA PÁGINA (NAVBAR + CONTENIDO) -->
+    <div class="dither-bg-container" id="ditherBackground" aria-hidden="true"></div>
 
     <!-- BOTÓN DE MENÚ PARA DISPOSITIVOS MÓVILES -->
     <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
@@ -35,13 +39,31 @@
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <!-- ==================================================== -->
-    <!-- NAVBAR ESTÁTICA LATERAL IZQUIERDA (GRIS OSCURO)     -->
+    <!-- NAVBAR LATERAL (CONTINUIDAD DITHER CON FONDO TRASLÚCIDO) -->
     <!-- ==================================================== -->
     <aside class="sidebar-navbar" id="sidebarNavbar">
         
-        <!-- ARTE COMPLETO EN LA NAVBAR: LYCORIS_CENTIPEDE_2 EN SU TOTALIDAD (OPACIDAD NO INVASIVA) -->
-        <div class="navbar-full-art-backdrop" aria-hidden="true">
-            <img src="assets/lycoris_centipede_2.png" alt="" class="navbar-full-art-img">
+        <!-- LÍNEA CARMESÍ OJIVAL DIVISORIA ENTRE NAVBAR Y CONTENIDO -->
+        <div class="sidebar-ogival-divider" aria-hidden="true">
+            <div class="ogival-track"></div>
+            <div class="ogival-crest top">
+                <svg viewBox="0 0 16 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0 0 C 10 4, 16 12, 16 18 C 16 24, 10 32, 0 36" stroke="#ff2a55" stroke-width="2" fill="none"/>
+                    <circle cx="8" cy="18" r="2.5" fill="#ff2a55"/>
+                </svg>
+            </div>
+            <div class="ogival-crest center">
+                <svg viewBox="0 0 18 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0 0 C 12 8, 18 18, 18 27 C 18 36, 12 46, 0 54" stroke="#ff2a55" stroke-width="2" fill="none"/>
+                    <polygon points="6,27 11,21 16,27 11,33" fill="#ff2a55"/>
+                </svg>
+            </div>
+            <div class="ogival-crest bottom">
+                <svg viewBox="0 0 16 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 0 0 C 10 4, 16 12, 16 18 C 16 24, 10 32, 0 36" stroke="#ff2a55" stroke-width="2" fill="none"/>
+                    <circle cx="8" cy="18" r="2.5" fill="#ff2a55"/>
+                </svg>
+            </div>
         </div>
 
         <!-- LOGO EN LA ESQUINA SUPERIOR IZQUIERDA (Separado ~50px de bordes) -->
@@ -129,7 +151,7 @@
     </aside>
 
     <!-- ==================================================== -->
-    <!-- CUERPO DE LA PÁGINA (FONDO BLANCO PURO)              -->
+    <!-- CUERPO DE LA PÁGINA (FONDO BLANCO PURO CON DITHER)   -->
     <!-- ==================================================== -->
     <div class="main-content-scroll" id="mainContentScroll">
 
@@ -138,16 +160,6 @@
         <!-- ================================================ -->
         <section class="section-container section-home" id="home">
             
-            <!-- Arte en Borde: 1/4 fuera del cuadro (Lycoris + Ciempiés) -->
-            <div class="art-layer bleed-top-right-quarter" aria-hidden="true">
-                <img src="assets/lycoris_centipede_1.png" alt="" class="art-img rot-neg-35 scale-xlarge">
-            </div>
-
-            <!-- Arte Descentralizado en el Centro-Inferior (Ciempiés solitario) -->
-            <div class="art-layer offcenter-hero-crawl" aria-hidden="true">
-                <img src="assets/navbar_centipede_dark.png" alt="" class="art-img rot-75 scale-xlarge">
-            </div>
-
             <div class="home-inner-wrapper">
                 
                 <!-- Tag técnico minimalista -->
@@ -203,16 +215,6 @@
         <!-- ================================================ -->
         <section class="section-container section-about" id="acerca-de">
             
-            <!-- Arte en Borde: 1/4 fuera del cuadro por la izquierda (Lycoris + Ciempiés) -->
-            <div class="art-layer bleed-left-quarter-about" aria-hidden="true">
-                <img src="assets/spiderlily_stem.jpg" alt="" class="art-img rot-18 scale-xlarge">
-            </div>
-
-            <!-- Arte Descentralizado en el Centro-Derecha (Ciempiés solitario curvado) -->
-            <div class="art-layer offcenter-about-curled" aria-hidden="true">
-                <img src="assets/centipede_curled.jpg" alt="" class="art-img rot-12 scale-xlarge">
-            </div>
-
             <div class="section-header-block">
                 <span class="section-index">02</span>
                 <h2 class="section-heading">ACERCA DE</h2>
@@ -229,7 +231,7 @@
                         <img src="assets/sergio_avatar.jpg" alt="Retrato profesional de Sergio, Ingeniero Informático" class="about-profile-image">
                     </div>
                     <div class="photo-caption-tag">
-                        <span class="caption-name">Sergio</span>
+                        <span class="caption-name scramble-text" data-scramble="Sergio">Sergio</span>
                         <span class="caption-title">Desarrollador Junior de Software</span>
                     </div>
                 </div>
@@ -309,16 +311,6 @@
         <!-- ================================================ -->
         <section class="section-container section-services" id="servicios">
             
-            <!-- Arte en Borde: 1/4 fuera del cuadro por la derecha (Lycoris + Ciempiés) -->
-            <div class="art-layer bleed-right-quarter-services" aria-hidden="true">
-                <img src="assets/lycoris_centipede_3.jpg" alt="" class="art-img rot-40 scale-xlarge">
-            </div>
-
-            <!-- Arte Descentralizado en el Centro-Inferior (Ciempiés deslizante) -->
-            <div class="art-layer offcenter-services-crawl" aria-hidden="true">
-                <img src="assets/centipede_crawler.png" alt="" class="art-img rot-neg-18 scale-large">
-            </div>
-
             <div class="section-header-block">
                 <span class="section-index">03</span>
                 <h2 class="section-heading">SERVICIOS</h2>
@@ -495,16 +487,6 @@
         <!-- ================================================ -->
         <section class="section-container section-works" id="trabajos">
             
-            <!-- Arte en Borde: 1/4 fuera del cuadro por la esquina superior izquierda (Ciempiés curvado) -->
-            <div class="art-layer bleed-top-left-works" aria-hidden="true">
-                <img src="assets/centipede_art.png" alt="" class="art-img rot-160 scale-large">
-            </div>
-
-            <!-- Arte Descentralizado en el Centro-Derecha (Lycoris + Ciempiés) -->
-            <div class="art-layer offcenter-works-combo" aria-hidden="true">
-                <img src="assets/navbar_centipede_dark.png" alt="" class="art-img rot-neg-12 scale-xlarge">
-            </div>
-
             <div class="section-header-block">
                 <span class="section-index">04</span>
                 <h2 class="section-heading">TRABAJOS</h2>
@@ -625,16 +607,6 @@
         <!-- ================================================ -->
         <section class="section-container section-contact" id="contacto">
             
-            <!-- Arte en Borde: 1/4 fuera del cuadro por la esquina inferior derecha (Lycoris + Ciempiés) -->
-            <div class="art-layer bleed-bottom-right-contact" aria-hidden="true">
-                <img src="assets/lycoris_centipede_1.png" alt="" class="art-img rot-neg-35 scale-xlarge">
-            </div>
-
-            <!-- Arte Descentralizado en el Centro-Izquierda (Ciempiés solitario) -->
-            <div class="art-layer offcenter-contact-crawl" aria-hidden="true">
-                <img src="assets/centipede_crawler.jpg" alt="" class="art-img scale-medium">
-            </div>
-
             <div class="section-header-block">
                 <span class="section-index">05</span>
                 <h2 class="section-heading">CONTACTO</h2>
@@ -788,7 +760,8 @@
     <!-- ==================================================== -->
     <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-    <!-- Script de interactividad -->
+    <!-- Scripts de interactividad y background shader -->
+    <script src="Dither.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
